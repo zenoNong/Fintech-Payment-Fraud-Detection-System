@@ -14,3 +14,4 @@ public interface FraudClient {
     FraudResponse evaluateFraud(@RequestBody FraudRequest request);
 }
 
+
