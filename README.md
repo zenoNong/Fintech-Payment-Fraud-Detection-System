@@ -22,21 +22,7 @@ Sentinel is a high-throughput **Fintech Backend** designed to simulate real-worl
 
 ## System Architecture
 
-```mermaid
-graph TD
-    User[User/Merchant] -->|HTTPS/JSON| Gateway[API Gateway / Auth Service]
-    Gateway -->|JWT Validated| Payment[Payment Microservice]
-    Payment -->|Sync REST| Fraud[Fraud Detection Engine (Python)]
-    Fraud -- Score (0.0 - 1.0) --> Payment
-    Payment -->|Async Event| Kafka{Apache Kafka}
-    Payment -->|Persist| DB[(PostgreSQL Ledger)]
-    
-    style Payment fill:#6db33f,stroke:#333,stroke-width:2px
-    style Kafka fill:#000,stroke:#333,stroke-width:2px,color:#fff
-    style Fraud fill:#ffd43b,stroke:#333,stroke-width:2px
-
-```
-
+![alt text](screenshots/Architecture.png)
 ---
 
 ## 🛠️ Tech Stack & Tools
