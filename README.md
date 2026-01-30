@@ -66,29 +66,28 @@ Spin up PostgreSQL and Kafka without installing them locally.
 
 ```bash
 docker-compose up -d
-
 ```
-
-*Verify: Check Docker Desktop to ensure `fintech_db` and `kafka` are green.*
+![alt text](screenshots/docker_dashboard.png)
 
 ### 2. Start Services
-
 **Order Matters:**
-
-1. **Fraud Service (Python):**
+1. **Fraud Service (Python):** *Runs on Port 5000*
 ```bash
 cd fraud-service
 python app.py
-
 ```
+![alt text](screenshots/fraud_detection_service_running.png)
 
-
-*Runs on Port 5000*
 2. **Auth Service (Java):**
-Run `AuthServiceApplication.java`
+
+![alt text](screenshots/auth_service_running.png)
+Run `AuthServiceApplication.java  ` 
 *Runs on Port 8081*
+
 3. **Payment Service (Java):**
-Run `PaymentServiceApplication.java`
+
+![alt text](screenshots/payment_service_running.png)
+Run `PaymentServiceApplication.java  `
 *Runs on Port 8082*
 
 ---
@@ -105,19 +104,19 @@ Run `PaymentServiceApplication.java`
   "password": "password123",
   "role": "USER"
 }
-
 ```
-
+![alt text](screenshots/register.png)
 ### 2. Login to get JWT
 
 **POST** `http://localhost:8081/auth/token`
 
 > **Response:** `eyJhbGciOiJIUzI1NiJ9...` (Copy this token)
+![alt text](screenshots/token_generation.png)
 
 ### 3. Initiate Secure Payment (Payment Service)
 
 **POST** `http://localhost:8082/payments/initiate`
-**Headers:** `Authorization: Bearer <YOUR_JWT_TOKEN>`
+**Headers:** `Authorization: Bearer <YOUR_JWT_TOKEN FROM ABOVE STEP>`
 
 **✅ Scenario A: Normal Transaction ($500)**
 
@@ -128,6 +127,7 @@ Run `PaymentServiceApplication.java`
 
 > **Result:** `APPROVED` (Fraud Score: 0.1)
 
+![alt text](screenshots/payment_approved.png)
 **❌ Scenario B: Fraud Attempt ($20,000)**
 
 ```json
@@ -136,6 +136,7 @@ Run `PaymentServiceApplication.java`
 ```
 
 > **Result:** `REJECTED` (Fraud Score: 0.95)
+![alt text](screenshots/payment_rejected.png)
 
 ---
 
