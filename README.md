@@ -20,7 +20,7 @@ Sentinel is a high-throughput **Fintech Backend** designed to simulate real-worl
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```mermaid
 graph TD
@@ -52,7 +52,7 @@ graph TD
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 
@@ -69,8 +69,7 @@ docker-compose up -d
 ```
 ![alt text](screenshots/docker_dashboard.png)
 
-### 2. Start Services
-**Order Matters:**
+### 2. Start Services *(order matters)*
 1. **Fraud Service (Python):** *Runs on Port 5000*
 ```bash
 cd fraud-service
@@ -92,7 +91,7 @@ Run `PaymentServiceApplication.java  `
 
 ---
 
-## 🧪 API Usage & Testing
+## API Usage & Testing
 
 ### 1. Register a User (Auth Service)
 
@@ -100,7 +99,7 @@ Run `PaymentServiceApplication.java  `
 
 ```json
 {
-  "username": "demo_user",
+  "username": "zeno_dev",
   "password": "password123",
   "role": "USER"
 }
@@ -116,22 +115,24 @@ Run `PaymentServiceApplication.java  `
 ### 3. Initiate Secure Payment (Payment Service)
 
 **POST** `http://localhost:8082/payments/initiate`
+
 **Headers:** `Authorization: Bearer <YOUR_JWT_TOKEN FROM ABOVE STEP>`
 
-**✅ Scenario A: Normal Transaction ($500)**
+**✅ Scenario A: Normal Transaction ($450)**
 
 ```json
-{ "userId": "demo_user", "amount": 500, "currency": "USD" }
+{ "userId": "zeno_dev", "amount": 450.00, "currency": "USD" }
 
 ```
 
 > **Result:** `APPROVED` (Fraud Score: 0.1)
 
 ![alt text](screenshots/payment_approved.png)
-**❌ Scenario B: Fraud Attempt ($20,000)**
+
+**❌ Scenario B: Fraud Attempt ($45,000)**
 
 ```json
-{ "userId": "demo_user", "amount": 20000, "currency": "USD" }
+{ "userId": "zeno_dev", "amount": 45000.00, "currency": "USD" }
 
 ```
 
@@ -146,10 +147,6 @@ Run `PaymentServiceApplication.java  `
 * **Fraud Latency:** ML Scoring API responds in <200ms.
 * **Audit Trail:** 100% of transactions are logged to PostgreSQL with timestamp and risk score.
 
-## 👨‍💻 Author
+## Author
 
-**Zeno** - *Backend Engineer | Java & Spring Boot Specialist*
-
-```
-
-```
+**Zeno Nongmaithem** - *Backend Engineer | Java & Spring Boot Specialist*
